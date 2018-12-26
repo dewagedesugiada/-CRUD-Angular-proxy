@@ -1,0 +1,76 @@
+
+
+<form [formGroup]="angForm" autocomplete="off">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" formControlName="firstName"  placeholder="Enter firstname">
+    </div>
+    <div *ngIf="angForm.controls['firstName'].invalid && (angForm.controls['firstName'].dirty || angForm.controls['firstName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['firstName'].errors.required">
+          First Name is required.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lastName">First Name</label>
+        <input type="text" class="form-control" id="lastName" formControlName="lastName"  placeholder="Enter lastname"> 
+    </div>
+    <div *ngIf="angForm.controls['lastName'].invalid && (angForm.controls['lastName'].dirty || angForm.controls['lastName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['lastName'].errors.required">
+          LastName Name is required.
+        </div>
+    </div>
+      <div class="form-group">
+          <label for="birthDate">Date of birth</label>
+          <input type="date" class="form-control" id="birthDate"  formControlName="birthDate">
+      </div>
+      <div *ngIf="angForm.controls['birthDate'].invalid && (angForm.controls['birthDate'].dirty || angForm.controls['birthDate'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['birthDate'].errors.required">
+            BirthDate is required.
+          </div>
+      </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" formControlName="username"  placeholder="Enter email">
+        </div>
+        <div *ngIf="angForm.controls['username'].invalid && (angForm.controls['username'].dirty || angForm.controls['username'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['username'].errors.required">
+              username is required.
+            </div>
+        </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+    </div>
+    <div *ngIf="angForm.controls['password'].invalid && (angForm.controls['password'].dirty || angForm.controls['password'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['password'].errors.required">
+          Password is required.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="phonetype">Phone Type</label>
+        <select formControlName="phoneType" id="phonetype" class="form-control" >
+          <option disabled >Choose</option>
+          <option>Android</option>
+          <option>Iphone</option>
+          <option>BlackBerry OS</option>
+          <option>Symbian OS</option>
+        </select>
+        
+      </div>
+      <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" class="form-control" id="phoneNumber" formControlName='phoneNumber' placeholder="Enter phoneNumber">
+      </div>
+      <div *ngIf="angForm.controls['phoneNumber'].invalid && (angForm.controls['phoneNumber'].dirty || angForm.controls['phoneNumber'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['phoneNumber'].errors.required">
+            phoneNumber is required.
+          </div>
+      </div>
+
+     
+      
+    <button type="submit" (click)="submitData()" class="btn btn-primary" [disabled]="angForm.invalid" >Submit</button>
+  
+  </form>
+  

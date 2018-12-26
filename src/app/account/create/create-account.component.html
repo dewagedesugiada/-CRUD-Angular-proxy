@@ -1,0 +1,48 @@
+
+  <!-- Horizontal material form -->
+<form [formGroup]="angForm" autocomplete="off" >
+    <!-- Grid row -->
+    <div class="form-group row">
+      <!-- Material input -->
+      <label for="inputEmail3MD" class="col-sm-2 col-form-label">Open Date</label>
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <input mdbInputDirective type="date" formControlName="openDate" class="form-control" id="inputEmail3MD" placeholder="Email">
+        </div>
+      </div>
+    </div>
+    <!-- Grid row -->
+  
+    <!-- Grid row -->
+    <div class="form-group row">
+      <!-- Material input -->
+      <label for="inputPassword3MD" class="col-sm-2 col-form-label">Balance</label>
+      <div class="col-sm-10">
+        <div class="md-form mt-0">
+          <input mdbInputDirective formControlName="balance" type="text" class="form-control" id="inputPassword3MD" placeholder="Rp.">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <!-- Material input -->
+        <label for="inputPassword3MD" class="col-sm-2 col-form-label">Customer Number</label>
+        <div class="col-sm-10">
+          <div class="md-form mt-0">
+              <app-combo-customer (customer)="setSelectedCustomer($event)"> </app-combo-customer>
+          </div>
+        </div>
+      </div>
+    <!-- Grid row -->
+  
+    <!-- Grid row -->
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" (click)="submitData()"  class="btn btn-primary btn-md" [disabled]="angForm.invalid" > <i class="fa fa-floppy-o" > </i> Sign in</button>
+        <button type="submit"  (click)="back()" class="btn btn-warning btn-md"> <i class="fa fa-arrow-left" ></i> Cancel</button>
+      </div>
+    </div>
+    <!-- Grid row -->
+  </form>
+  <!-- Horizontal material form -->

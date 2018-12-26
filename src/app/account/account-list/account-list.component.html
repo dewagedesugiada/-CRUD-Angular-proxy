@@ -1,0 +1,33 @@
+<div>
+    <app-update-account [account]="selectedAccount" *ngIf="showDetail" (result)="prosesResult($event)"></app-update-account>
+</div>
+<div class="container" >
+  <button class="btn btn-success btn-md pull-right " routerLink="/add_account" > <i class="fa fa-plus" >  Create Account</i></button>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Account Number</th>
+        <th>Open date</th>
+        <th>Balance </th>
+        <th>Name Customer </th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of account" >
+        <td>{{item.accountNumber}}</td>
+        <td>{{item.openDate | date: 'dd/MM/yyyy'}}</td>
+        <td>{{item.balance | rupiah}}</td>
+        <td> {{item.customer ? item.customer.firstName : ''}}</td>
+        <td>
+            <a class="btn btn-info btn-sm" style="margin-right : 5px" (click)="selectAccount(item)" > <i class="fa fa-pencil"></i> </a>
+            <a (click)="deleted(item.accountNumber)" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br><br><br>
+
+
+
