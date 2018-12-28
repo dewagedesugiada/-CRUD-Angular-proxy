@@ -1,3 +1,33 @@
-<p>
-  list-trans works!
-</p>
+<div class="container" >
+    <app-update-trans [transaction]="selectedTransaction" *ngIf="showDetail" (result)="prosesResult($event)"></app-update-trans>
+  
+  <button class="btn btn-success btn-md pull-right " routerLink="/add_transaction" > <i class="fa fa-plus" >Create transaction</i> </button>
+<table class="table table-hover" >
+  <thead>
+    <tr>
+      <th>ID Transaction</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Amount Sign</th>
+      <th>Name Customer</th>
+      <th>Account Number</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of transaction | paginate: { itemsPerPage: 5 , currentPage: p}" >
+      <td>{{item.idTransaction}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.amount | rupiah }}</td>
+      <td>{{item.amountSign}}</td>
+      <td>{{item.account ? item.account.customer.firstName : "" }}</td>
+      <td>{{item.account ? item.account.accountNumber : ""}}</td>
+      <td>
+        <a class="btn btn-info btn-sm" style="margin-right: 5px" (click)="selectTransaction(item)" ><i class="fa fa-pencil" ></i></a>
+        <a (click)="deleted(item.idTransaction)" class="btn btn-danger btn-sm"><i class="fa fa-trash" ></i></a>
+      </td>
+    </tr> 
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </tbody>
+</table>
+</div>

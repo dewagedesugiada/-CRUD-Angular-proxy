@@ -25,14 +25,14 @@ export class UpdateAccountComponent implements OnInit {
       accountNumber : [''],
       openDate : ['',Validators.required],
       balance : ['',Validators.required],
-      customer_number : ['', Validators.required]
+      customer : ['', Validators.required]
   });
 
   if(this.account){
     this.accountForm.controls['accountNumber'].setValue(this.account.accountNumber);
       this.accountForm.controls['openDate'].setValue(this.account.openDate);
       this.accountForm.controls['balance'].setValue(this.account.balance);
-      this.accountForm.controls['customer_number'].setValue(this.account.customer_number ? this.account.customer_number : "");
+      this.accountForm.controls['customer'].setValue(this.account.customer ? this.account.customer : "");
     }
 
   }
@@ -43,7 +43,7 @@ export class UpdateAccountComponent implements OnInit {
     account.openDate=this.accountForm.controls['openDate'].value ;
     account.balance=this.accountForm.controls['balance'].value;
 
-    account.customer_number=this.accountForm.controls['customer_number'].value;
+    account.customer=this.accountForm.controls['customer'].value;
 
     this.dataSercive.updateCust(account).subscribe((res)=>{
       console.log(JSON.stringify(res));

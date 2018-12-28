@@ -1,6 +1,6 @@
 <div class="container" >
 
-  <button class="btn btn-primary btn-sm pull-right" [routerLink]="[ '/add_customer' ]"><i class="fa fa-plus" ></i> Create Customer</button><br><br>
+  <button class="btn btn-success btn-md pull-right" [routerLink]="[ '/add_customer' ]"><i class="fa fa-plus" > Create Customer</i></button><br><br>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -25,6 +25,7 @@
         <td>{{item.phoneType}}</td>
         <td>{{item.phoneNumber}}</td>
         <td>
+            <a class="btn btn-success btn-sm" style="margin-right : 5px" (click)="showAccount(item)" > <i class="fa fa-eye"></i> </a>
           <a class="btn btn-info btn-sm" style="margin-right: 5px " (click)="selectCustomer(item)" > <i class="fa fa-pencil" ></i></a>
           <a class="btn btn-danger btn-sm" (click)="deleteCust(item.customerNumber)" ><i class="fa fa-trash" ></i></a>
         </td>

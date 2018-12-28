@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Account } from './account';
+import { Observable } from 'rxjs';
+import { CommonResponse } from '../shared/model/common-response';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +10,18 @@ import { Account } from './account';
 export class AccountService {
 
   constructor(private http : HttpClient) { }
-  ParenUri = 'http://localhost:3000/';
+  ParenUri = 'http://localhost:7000/api/';
 
-  getAccount(){
-    const uri = this.ParenUri + 'accounts' ;
+  getAccount(customerNumber):Observable<CommonResponse>{
+    let uri ;
+    if(customerNumber!=undefined){
+      uri = this.ParenUri + 'account/list?customerNumber=' + customerNumber ;
+    }else{
+      uri = this.ParenUri + 'account/list';
+    }
     return this
     .http
-    .get(uri);
+    .get<CommonResponse>(uri);
   }
 
   insertAccount(account : Account){

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account.service';
 import Swal from 'sweetalert2'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Account } from '../account';
 
 @Component({
@@ -11,25 +11,32 @@ import { Account } from '../account';
 })
 export class AccountListComponent implements OnInit {
 
-  constructor( private dataService : AccountService, private router : Router ) { }
+  constructor( private dataService : AccountService, private router : Router,private route : ActivatedRoute) { }
   
   account : Account [] = [] ;
   showDetail : boolean = false ;
   selectedAccount : Account = new Account() ;
   ngOnInit() {
-    this.loadData();
+    this.route.params.subscribe(params=>{
+      let customerNumber = params['customerNumber'];
+      this.loadData(customerNumber);
+    })
+   
+    
   }
 
-  loadData(){
-    this.dataService.getAccount().subscribe(res=>{
-      Object.assign(this.account, res);
+  loadData(customerNumber?){
+    this.dataService.getAccount(customerNumber).subscribe(res=>{
       console.log(this.account);
+      Object.assign(this.account, res.values);
       
     },err=>{
       console.log('error'+ JSON.stringify(err)) ;
       
     })
   }
+
+  
 
   deleted(accountNumber){
     Swal({
@@ -69,7 +76,7 @@ export class AccountListComponent implements OnInit {
     copyAccount.accountNumber = account.accountNumber;
     copyAccount.openDate = account.openDate;
     copyAccount.balance = account.balance;
-    copyAccount.customer_number = account.customer_number;
+    copyAccount.customer = account.customer;
     this.selectedAccount = copyAccount ;
     this.showDetail = true ; 
   }
@@ -82,5 +89,9 @@ export class AccountListComponent implements OnInit {
   }
   editData(account : Account){
     this.router.navigate(['/edit_account',{accountNumber : account.accountNumber}]);
+  }
+
+  showTransaction(account :  Account){
+    this.router.navigate(['transaction', {accountNumber : account.accountNumber} ]);
   }
 }

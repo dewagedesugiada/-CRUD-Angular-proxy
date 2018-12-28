@@ -24,7 +24,7 @@ export class CreateAccountComponent implements OnInit {
     this.angForm = this.fb.group({
       openDate : [null, Validators.required ],
       balance: [null, Validators.required ],
-      customer_number: [null, Validators.required ]
+      customer: [null, Validators.required ]
     })
   }
 
@@ -33,9 +33,13 @@ export class CreateAccountComponent implements OnInit {
     account.openDate=this.angForm.controls['openDate'].value ;
     account.balance=this.angForm.controls['balance'].value;
 
-    account.customer_number =this.angForm.controls['customer_number'].value;
+    let customer : Customer = new Customer();
+    customer.customerNumber = this.angForm.controls['customer'].value ;
+    account.customer = customer ;
+
+    console.log(customer.customerNumber);
     
-    
+
     this.dataService.insertAccount(account).subscribe(res=>{
     
         console.log("Done")
@@ -46,7 +50,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   setSelectedCustomer(customer : Customer){
-    this.angForm.controls['customer_number'].setValue(customer.customerNumber);
+    this.angForm.controls['customer'].setValue(customer.customerNumber);
     alert(customer.customerNumber);
 
     this.angForm.updateValueAndValidity();

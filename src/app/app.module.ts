@@ -19,6 +19,10 @@ import { CurrencyPipe } from '@angular/common';
 import { ListTransComponent } from './transaction/list-transaction/list-trans.component';
 import { CreateTransComponent } from './transaction/create/create-trans.component';
 import { UpdateTransComponent } from './transaction/update/update-trans.component';
+// Angular Animations Module
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ComboAccountComponent } from './shared/componen/account/combo-account.component';
 
 
 @NgModule({
@@ -34,7 +38,8 @@ import { UpdateTransComponent } from './transaction/update/update-trans.componen
     RupiahPipe,
     ListTransComponent,
     CreateTransComponent,
-    UpdateTransComponent
+    UpdateTransComponent,
+    ComboAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,9 @@ import { UpdateTransComponent } from './transaction/update/update-trans.componen
     InputsModule,
     ButtonsModule,
     ChartsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    NgxPaginationModule 
     
   ],
   providers: [CustomerServiceService, CurrencyPipe ],

@@ -1,7 +1,9 @@
+import { Account } from 'src/app/account/account';
+
 export class Transaction{
     idTransaction : number ;
     type : string ;
     amount : string ;
-    amount_sign : string ;
-    Account_number : number ;
+    amountSign : string ;
+    account : Account ;
 }

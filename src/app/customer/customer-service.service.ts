@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Customer } from './customer';
+import { Observable } from 'rxjs';
+import { CommonResponse } from '../shared/model/common-response';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +10,14 @@ import { Customer } from './customer';
 export class CustomerServiceService {
 
   constructor(private http:HttpClient) { }
-  ParentUri = 'http://localhost:3000/' ;
+  ParentUri = 'http://localhost:7000/api/' ;
 
-  getCustomer(){
-    const uri = this.ParentUri + 'customers' ;
+  getCustomer():Observable<CommonResponse>{
+    const uri = this.ParentUri + 'customer/list' ;
+    // const uri = this.ApiJava + 'customer' ;
     return this
     .http
-    .get(uri);
+    .get<CommonResponse>(uri);
   }
 
   insertCustomer(customer : Customer){

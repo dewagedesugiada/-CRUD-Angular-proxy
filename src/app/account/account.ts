@@ -4,5 +4,5 @@ export class Account{
     accountNumber : number ;
     openDate : Date ;
     balance : string ;
-    customer_number : number ;
+    customer : Customer ;
 }

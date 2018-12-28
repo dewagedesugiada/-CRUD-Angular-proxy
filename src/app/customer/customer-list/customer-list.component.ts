@@ -4,6 +4,7 @@ import { Customer } from '../customer';
 // import Swal from 'sweetalert2/dist/sweetalert2.js'
 import Swal from 'sweetalert2'
 import { ok } from 'assert';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
@@ -12,7 +13,7 @@ import { ok } from 'assert';
 })
 export class CustomerListComponent implements OnInit {
 
-  constructor(private dataService : CustomerServiceService) {}
+  constructor(private dataService : CustomerServiceService, private router : Router) {}
 
   customer : Customer[] = [];
   showDetail : boolean = false ;
@@ -24,8 +25,8 @@ export class CustomerListComponent implements OnInit {
 
   loadData(){
     this.dataService.getCustomer().subscribe(res=>{
-      Object.assign(this.customer, res);
-      console.log(this.customer);
+      console.log(JSON.stringify(res.values));
+      Object.assign(this.customer, res.values);
       
     },err =>{
       console.log('error'+ JSON.stringify(err));
@@ -87,6 +88,10 @@ export class CustomerListComponent implements OnInit {
         this.showDetail =false ;
         this.loadData() ;
       } 
+     }
+
+     showAccount(customer : Customer){
+      this.router.navigate(['/account', {customerNumber : customer.customerNumber} ]);
      }
      
 
